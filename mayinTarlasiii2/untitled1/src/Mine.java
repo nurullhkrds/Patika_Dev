@@ -21,9 +21,9 @@ public class Mine {
     public void gameLoop() {
         while(gameStat) {
             Scanner scan = new Scanner(System.in);
-            System.out.print("Select the row: ");
+            System.out.print("Satır seç: ");
             int pickenRow= scan.nextInt();
-            System.out.print("Select the column: ");
+            System.out.print("Sutün seç: ");
             int pickenColumn= scan.nextInt();
             if(pickenRow<0 || pickenRow >row-1 || pickenColumn <0 || pickenColumn>column-1) {
                 System.out.println("Choose an area within the bounds of the array!");
@@ -45,7 +45,7 @@ public class Mine {
             int randRow=rnd.nextInt(row);
             int randColumn=rnd.nextInt(column);
             if(checkMap(randRow,randColumn)) {
-                mineMap[randRow][randColumn]="M";
+                mineMap[randRow][randColumn]="*";
             }else {
                 i--;
             }
@@ -54,7 +54,7 @@ public class Mine {
         }
     }
     public boolean checkMap(int rowNumber,int columnNumber) {
-        if(mineMap[rowNumber][columnNumber]=="M")
+        if(mineMap[rowNumber][columnNumber]=="*")
             return false;
         else
             return true;
@@ -62,7 +62,7 @@ public class Mine {
     public void printMap() {
         for(int i=0;i<row;i++) {
             for(int k=0;k<column;k++) {
-                if(mineMap[i][k]!="M") {
+                if(mineMap[i][k]!="*") {
                     System.out.print("-");
                     mineMap[i][k]="-";
                 }
@@ -79,7 +79,7 @@ public class Mine {
             if(i<0 || i>row-1) continue;
             for(int k=pickenColumn-1;k<=pickenColumn+1;k++) {
                 if(k<0 || k>column-1) continue;
-                if(mineMap[i][k]=="M") {
+                if(mineMap[i][k]=="*") {
                     temp++;
                 }
             }
@@ -89,7 +89,7 @@ public class Mine {
             for(int k=0;k<column;k++) {
                 if(Character.isDigit(mineMap[i][k].charAt(0)))
                     System.out.print(mineMap[i][k]);
-                else if(mineMap[i][k]=="M")
+                else if(mineMap[i][k]=="*")
                     System.out.print("-");
                 else {
                     tempCont++;
@@ -100,7 +100,7 @@ public class Mine {
         }
         if(tempCont<1) {
             gameStat=false;
-            System.out.println("YOU WON!!!!");
+            System.out.println("Kazandın!");
         }
     }
 
